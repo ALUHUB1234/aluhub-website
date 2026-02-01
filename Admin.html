@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal - AluHub</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1><i class="fas fa-user-shield"></i> Admin Portal</h1>
+                <span>AluHub Staff Management</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="admin.html" class="active">Salary Advances</a></li>
+                <li><button id="logoutBtn" class="btn-logout"><i class="fas fa-sign-out-alt"></i> Logout</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="admin-container">
+        <div class="login-container" id="loginContainer">
+            <div class="login-box">
+                <h2><i class="fas fa-lock"></i> Admin Login</h2>
+                <div class="input-group">
+                    <label for="password"><i class="fas fa-key"></i> Password</label>
+                    <input type="password" id="password" placeholder="Enter admin password">
+                </div>
+                <button id="loginBtn" class="btn">Login</button>
+                <p class="password-hint">Default password: AluHub@123</p>
+            </div>
+        </div>
+
+        <div class="admin-content" id="adminContent" style="display: none;">
+            <div class="admin-header">
+                <h2><i class="fas fa-money-bill-wave"></i> Staff Salary Advance Management</h2>
+                <button id="addAdvanceBtn" class="btn"><i class="fas fa-plus"></i> Add New Advance</button>
+            </div>
+
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <h3>Total Advances</h3>
+                    <p id="totalAmount">₹0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Staff</h3>
+                    <p id="totalStaff">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>This Month</h3>
+                    <p id="monthlyTotal">₹0</p>
+                </div>
+            </div>
+
+            <div class="advance-form" id="advanceForm" style="display: none;">
+                <h3><i class="fas fa-edit"></i> Add Salary Advance</h3>
+                <form id="salaryAdvanceForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="staffName">Staff Name *</label>
+                            <input type="text" id="staffName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="advanceDate">Date *</label>
+                            <input type="date" id="advanceDate" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="purpose">Purpose *</label>
+                            <select id="purpose" required>
+                                <option value="">Select Purpose</option>
+                                <option value="Medical Emergency">Medical Emergency</option>
+                                <option value="Family Emergency">Family Emergency</option>
+                                <option value="Education Fees">Education Fees</option>
+                                <option value="Marriage Expenses">Marriage Expenses</option>
+                                <option value="Home Repair">Home Repair</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Amount (₹) *</label>
+                            <input type="number" id="amount" required min="0" step="100">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="remarks">Remarks</label>
+                        <textarea id="remarks" rows="2"></textarea>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="submit" class="btn"><i class="fas fa-save"></i> Save Advance</button>
+                        <button type="button" id="cancelBtn" class="btn-cancel">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="advances-table">
+                <h3><i class="fas fa-list"></i> All Salary Advances</h3>
+                <div class="table-controls">
+                    <input type="text" id="searchInput" placeholder="Search staff...">
+                    <button id="exportBtn" class="btn-secondary"><i class="fas fa-download"></i> Export</button>
+                </div>
+                <table id="advancesTable">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Staff Name</th>
+                            <th>Date</th>
+                            <th>Purpose</th>
+                            <th>Amount (₹)</th>
+                            <th>Remarks</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="advancesBody">
+                        <!-- Data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="summary-section">
+                <h3><i class="fas fa-chart-bar"></i> Staff Wise Summary</h3>
+                <div class="summary-cards" id="staffSummary">
+                    <!-- Summary cards will be generated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
